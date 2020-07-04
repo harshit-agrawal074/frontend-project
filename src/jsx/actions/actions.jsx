@@ -1,27 +1,12 @@
 import {
   ADD_ALL_ELEMENTS, ADD_ELEMENT, READ_ALL_CATEGORY, READ_ALL_ELEMENTS, READ_ALL_GENRE, READ_BY_UUID
 } from "../constants/action-types";
+import { createAction } from 'redux-actions';
 
-export function addElement(payload) {
-  return { type: ADD_ELEMENT, payload }
-}
+export const addElement = createAction(ADD_ELEMENT);
+export const addAllElements = createAction(ADD_ALL_ELEMENTS);
+export const readAllElements = createAction(READ_ALL_ELEMENTS);
+export const readAllCategory = createAction(READ_ALL_CATEGORY);
+export const readAllGenre = createAction(READ_ALL_GENRE);
+export const readByUuid = createAction(READ_BY_UUID);
 
-export function addAllElements(payload) {
-  return { type: ADD_ALL_ELEMENTS, payload}
-}
-
-export function readAllElements(payload) {
-  return { type: READ_ALL_ELEMENTS, payload}
-}
-
-export function readAllCategory(payload) {
-  return { type: READ_ALL_CATEGORY, payload}
-}
-
-export function readAllGenre(payload) {
-  return { type: READ_ALL_GENRE, payload}
-}
-
-export function readByUuid(payload) {
-  return { type: READ_BY_UUID, payload}
-}
