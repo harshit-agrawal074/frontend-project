@@ -13,7 +13,7 @@ class ConnectedForm extends Component {
     super(props);
     this.state = {
       elements : [
-        {id: "title", name: "Name of the Element", value: "", className : "badge badge-success"},
+        {id: "name", name: "Name of the Element", value: "", className : "badge badge-success"},
         {id: "description", name: "Description", value: "", className : "badge badge-info"},
         {id: "casting", name: "Casting", value: "", className : "badge badge-primary"},
         {id: "category", name: "Category", value: "", className : "badge badge-dark"},
@@ -22,7 +22,7 @@ class ConnectedForm extends Component {
         {id: "languages", name: "Languages", value: "", className : "badge badge-dark"},
         {id: "rating", name: "Rating", value: "", className : "badge badge-dark"}
       ],
-      title: "",
+      name: "",
       category: "",
       genre: "",
       duration: "",
@@ -41,9 +41,9 @@ class ConnectedForm extends Component {
 
   handleSubmit(event) {
     event.preventDefault();
-    const { title, category, genre, duration, description, languages, rating, casting } = this.state;
-    this.props.addElement({ title, category, genre, duration, description, languages, rating, casting });
-    this.setState({ title: "", category: "", genre: "", duration: "", description: "", languages: "", rating: "", casting: "" });
+    const { name, category, genre, duration, description, languages, rating, casting } = this.state;
+    this.props.addElement({ name, category, genre, duration, description, languages, rating, casting });
+    this.setState({ name: "", category: "", genre: "", duration: "", description: "", languages: "", rating: "", casting: "" });
   }
 
   render() {

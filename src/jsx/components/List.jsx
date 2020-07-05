@@ -14,7 +14,7 @@ import { connect } from "react-redux";
 //     return (
 //         <div>
 //           <ul>
-//             {articles.map(el => (<li key={el.id}>{el.title}
+//             {articles.map(el => (<li key={el.id}>{el.name}
 //                   <ul>
 //                     <li key={el.id}>{el.category}</li>
 //                     <li key={el.id}>{el.genre}</li>
@@ -39,7 +39,7 @@ const ConnectedList = ({ articles }) => (
     <div>
       <ul>
         {articles.map(el => (
-            <li key={el.id}>{el.title}
+            <li key={el.id}>{el.name}
               <ul>
                 <li key={el.id}>{el.category}</li>
                 <li key={el.id}>{el.genre}</li>

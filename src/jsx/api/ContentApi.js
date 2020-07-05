@@ -3,9 +3,11 @@ const SAVE_ELEMENT_URL = `${BASE_URL}/content`;
 
 export function saveElementApi(payload) {
   return fetch(SAVE_ELEMENT_URL, {
-    mode: "no-cors",
-    headers: { 'Accept': 'application/json','Content-Type': 'application/json' },
-    method: "POST",
-    entity : payload
-  }).json();
+    method: 'POST',
+    headers: new Headers({
+      "Content-Type": "application/json",
+      "Accept": "application/json"
+    }),
+    body: JSON.stringify(payload.payload)
+  });
 }
