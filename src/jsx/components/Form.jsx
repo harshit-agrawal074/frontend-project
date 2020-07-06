@@ -1,18 +1,35 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { addElement } from "../actions/actions";
+import "bootstrap/dist/css/bootstrap.css";
+import TableRow from "./TableRow";
 
-function mapDispatchToProps(dispatch) {
-  return {
-    addElement: article => dispatch(addElement(article))
-  };
-}
+const mapDispatchToProps = {
+  addElement
+};
 
 class ConnectedForm extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      title: ""
+      elements : [
+        {id: "name", name: "Name of the Element", value: "", className : "badge badge-success"},
+        {id: "description", name: "Description", value: "", className : "badge badge-info"},
+        {id: "casting", name: "Casting", value: "", className : "badge badge-primary"},
+        {id: "category", name: "Category", value: "", className : "badge badge-dark"},
+        {id: "genre", name: "Genre", value: "", className : "badge badge-dark"},
+        {id: "duration", name: "Duration", value: "", className : "badge badge-dark"},
+        {id: "languages", name: "Languages", value: "", className : "badge badge-dark"},
+        {id: "rating", name: "Rating", value: "", className : "badge badge-dark"}
+      ],
+      name: "",
+      category: "",
+      genre: "",
+      duration: "",
+      description: "",
+      languages: "",
+      rating: "",
+      casting: ""
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -24,25 +41,26 @@ class ConnectedForm extends Component {
 
   handleSubmit(event) {
     event.preventDefault();
-    const { title } = this.state;
-    this.props.addElement({ title });
-    this.setState({ title: "" });
+    const { name, category, genre, duration, description, languages, rating, casting } = this.state;
+    this.props.addElement({ name, category, genre, duration, description, languages, rating, casting });
+    this.setState({ name: "", category: "", genre: "", duration: "", description: "", languages: "", rating: "", casting: "" });
   }
 
   render() {
-    const { title } = this.state;
     return (
         <form onSubmit={this.handleSubmit}>
-          <div>
-            <label htmlFor="title">Title</label>
-            <input
-                type="text"
-                id="title"
-                value={title}
-                onChange={this.handleChange}
-            />
-          </div>
-          <button type="submit">SAVE</button>
+          <table >
+            {this.state.elements.map(element => (
+                <TableRow
+                    id={element.id}
+                    name={element.name}
+                    value={this.state[element.id]}
+                    onChange={this.handleChange}
+                    className={element.className}
+                />
+            ))}
+          </table>
+          <button className="btn btn-secondary btn-lg" type="submit">SAVE</button>
         </form>
     );
   }
