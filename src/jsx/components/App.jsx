@@ -2,8 +2,41 @@ import React from "react";
 import List from "./List";
 import "bootstrap/dist/css/bootstrap.css";
 import { MDBDropdown, MDBDropdownToggle, MDBDropdownMenu, MDBDropdownItem } from "mdbreact";
+import HomeBody from "./HomeBody";
+import AddElement from "./AddElement";
+
+const renderPage = (state) => {
+  switch (state.bodyComponent) {
+
+    case "HomeBody":
+      return (
+          <HomeBody />
+      );
+    case "AddElement":
+      return (
+          <AddElement />
+      );
+    default:
+      return (
+          <HomeBody />
+      );
+  }
+};
 
 class App extends React.Component {
+
+  constructor() {
+    super();
+    this.state = {
+      bodyComponent: "HomeBody"
+    };
+    this.handleClick = this.handleClick.bind(this);
+  }
+
+  handleClick() {
+    this.setState( { bodyComponent : "AddElement" })
+  }
+
 
   render() {
     return (<React.Fragment>
@@ -29,7 +62,7 @@ class App extends React.Component {
             <MDBDropdown className="mr-sm-2">
               <MDBDropdownToggle caret>Menu Dropdown</MDBDropdownToggle>
               <MDBDropdownMenu basic>
-                <MDBDropdownItem>Add Element</MDBDropdownItem>
+                <MDBDropdownItem onClick={this.handleClick}>Add Element</MDBDropdownItem>
                 <MDBDropdownItem>Add Multiple Elements</MDBDropdownItem>
                 <MDBDropdownItem divider />
                 <MDBDropdownItem>Something else here</MDBDropdownItem>
@@ -40,39 +73,7 @@ class App extends React.Component {
       </nav>
 
       <main role="main" className="container">
-        <div align="center" style={{"marginTop":'100px'}}>
-          <h1> <span className="badge badge-info">Hey Hostelers,</span></h1>
-          <p className="lead"> <span className="badge badge-danger">Tell me, what is the most important thing in hostel life?</span>
-            <br/> Some will say Food, some will say Relationships, some will say Internet. I know Internet is very important but
-            <br/> the most important thing is <span className="badge badge-pill">Entertainment Content</span> because without content, internet is useless ;P
-            <br/>and finding a place with all the content is reeeallly a mess. So, this website will help you with this.
-          </p>
-        </div>
-        <div>
-          <table>
-            <tr>
-              <td>
-                <img src="https://picsum.photos/200" alt="" />
-              </td>
-              <td>
-                <img src="https://picsum.photos/200?grayscale" alt="" />
-              </td>
-              <td>
-                <img src="https://picsum.photos/200?blur" alt="" />
-              </td>
-              <td>
-                <img src="https://picsum.photos/200?blur=2" alt="" />
-              </td>
-              <td>
-                <img src="https://picsum.photos/id/237/200" alt="" />
-              </td>
-              <td>
-                <img src="https://picsum.photos/200?" alt="" />
-              </td>
-            </tr>
-
-          </table>
-        </div>
+        {renderPage(this.state)}
       </main>
       <List />
 
