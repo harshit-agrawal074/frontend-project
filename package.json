@@ -9,9 +9,9 @@
     "popper.js": "^1.16.1",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
-    "react-scripts": "0.9.5",
+    "react-scripts": "5.0.1",
     "redux-saga-combine-watchers": "^1.0.3",
-    "resolve-url-loader": "^3.1.1"
+    "resolve-url-loader": "^5.0.0"
   },
   "devDependencies": {
     "react-redux": "^7.2.0",
